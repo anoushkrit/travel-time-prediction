@@ -1,15 +1,19 @@
 # travel-time-prediction
+
+            Please do refer the `main.ipynb` file for detailed description
+
 Estimation of ETA and ETD from the Train Travel Time Data
 
 ## 1. Importing Libraries
 
+Importing all the necessary libraries for making this project, listed in `requirements.txt`
+
 ## 2. Load Data
 
-## 3. Basic Info on Data
+Loading Data using Pandas
 
-## 4. Correcting Inconsistencies
 
-## 5. Data Wrangling, Feature Engineering and EDA
+## 3.  Correcting Inconsistencies, Data Wrangling, Feature Engineering and EDA
 
 1. Finding Unique Values in every Feature
 2. Dropping Redundant Columns
@@ -34,20 +38,20 @@ Estimation of ETA and ETD from the Train Travel Time Data
 ```
 
 
-After finding the unique values in all the features we get to know that the data is from the time span runDate 2020-01-01 to 2020-02-19 among 337 stations with 15 trains trainCode . Train Stations having their 337 trainStationID with Arrival and Departure frequency of 25051 in this time span. Trains take around dayCount from 0 to 2
+After finding the unique values in all the features we get to know that the data is from the time span `runDate` 2020-01-01 to 2020-02-19 among 337 stations with 15 trains `trainCode` . Train Stations having their 337 `trainStationID` with Arrival and Departure frequency of 25051 in this time span. Trains take around `dayCount` from 0 to 2
 
-Since, stations are already coded with their trainStationID we can remove one of them
+Since, stations are already coded with their `trainStationID` we can remove one of them
 
-### 5.1 After Imputing the data
-Now we know that ArrivalDelay, DepartureDelay were derived columns but we can use those columns to derive the missing values in scheduledArrival and scheduledDeparture.
+### 3.1 After Imputing the data
+Now we know that `ArrivalDelay`, `DepartureDelay` were derived columns but we can use those columns to derive the missing values in `scheduledArrival` and `scheduledDeparture`.
 
 For the missing values in test sA and sD; train sD. We will drop those values in both test and train.
 
-### 5.2  Dropping some features
+### 3.2  Dropping some features
 
 Since `Arrival Delay` is a derived column we can remove the `actualArrival` and `actualDeparture` from the train data
 
-### 5.3 Breaking down the datetime values
+### 3.3 Breaking down the datetime values
 
 1. Dropping the year 2020 from all the datetime formats
 2. Dropping the `second` from datetime values.
@@ -55,15 +59,14 @@ Since `Arrival Delay` is a derived column we can remove the `actualArrival` and 
 
 Not taking year and seconds because of having the same value all along
 
-## 6. Model Selection
-
+## 4. Model Selection and Model Building
 1. DecisionTreeRegressor
 2. RandomForestRegressor
 
 For 2 different models, one for DepartureDelay and other for ArrivalDelay
 In totality 4, 2 for DepatureDelay(DD), and 2 for ArrivalDelay(AD)
 
-## 6.1 Feature Importance
+## 4.1 Feature Importance
 
 For example this what I received on
 ```
@@ -85,7 +88,8 @@ sD_hour -- 0.01
 sD_minute -- 0.01
 ```
 
-## 6.2 Score Values
-Checked whether feature Importance is bogus by removing the `trainCode` feature and got to know that regressor score becomes `0.1113` but when the `trainCode` is supplied the score becomes mpre than `93`. But since `DepartureDelay` cannot be passed the score remains out to be `0.77763`.
+##  5. Evaluation Criteria
 
-## 7. Model Building
+Checked whether feature Importance is bogus by removing the `trainCode` feature and got to know that regressor score becomes `0.1113` but when the `trainCode` is supplied the score becomes more than `93`. But since `DepartureDelay` cannot be passed the score remains out to be `0.77763`.
+
+The score given by the regressors were used for the Evaluation of the model
