@@ -3,19 +3,11 @@ Estimation of ETA and ETD from the Train Travel Time Data
 
 ## 1. Importing Libraries
 
-## 2. Load Data 
+## 2. Load Data
 
 ## 3. Basic Info on Data
 
-|runDate |	stations|trainCode|	trainStationId	|scheduledArrival|	scheduledDeparture	|actualArrival|	actualDeparture|	distance|	dayCount|	ArrivalDelay	|DepartureDelay|
-
-|----------|------------|----------|---------|---------|--------|-------|--------|-------|-------|------|----------|---|
-0	2020-01-01	FZR	12138	2657812	NaN	2020-01-01 21:40:00	2020-01-01 00:00:00	2020-01-01 21:40:00	0	0	0	0
-1	2020-01-01	FDK	12138	2659393	2020-01-01 22:05:00	2020-01-01 22:07:00	2020-01-01 22:16:00	2020-01-01 22:18:00	32	0	11	11
-2	2020-01-01	KKP	12138	2658108	2020-01-01 22:23:00	2020-01-01 22:25:00	2020-01-01 22:37:00	2020-01-01 22:38:00	45	0	14	13
-3	2020-01-01	GJUT	12138	2734206	2020-01-01 22:38:00	2020-01-01 22:40:00	2020-01-01 22:56:00	2020-01-01 22:57:00	61	0	18	17
-4	2020-01-01	GNA	12138	2742572	2020-01-01 22:54:00	2020-01-01 22:56:00	2020-01-01 23:14:00	2020-01-01 23:15:00	76	0	20	19
-## 4. Correcting Inconsistencies 
+## 4. Correcting Inconsistencies
 
 ## 5. Data Wrangling, Feature Engineering and EDA
 
@@ -28,7 +20,7 @@ Estimation of ETA and ETD from the Train Travel Time Data
 
 ``` Unique Values in runDate =  (50,)  
  Unique Values in stations =  (349,)  
- Unique Values in trainCode =  (15,)  }
+ Unique Values in trainCode =  (15,)
  Unique Values in trainStationId =  (349,)  
  Unique Values in sA =  (24480,)  
  Unique Values in sD =  (23505,)  
@@ -37,7 +29,7 @@ Estimation of ETA and ETD from the Train Travel Time Data
  Unique Values in distance =  (573,)  
  Unique Values in dayCount =  (3,)  
  Unique Values in ArrivalDelay =  (501,)  
- Unique Values in DepartureDelay =  (455,) 
+ Unique Values in DepartureDelay =  (455,)
 
 ```
 
@@ -58,7 +50,7 @@ Since `Arrival Delay` is a derived column we can remove the `actualArrival` and 
 ### 5.3 Breaking down the datetime values
 
 1. Dropping the year 2020 from all the datetime formats
-2. Dropping the `second` from datetime values. 
+2. Dropping the `second` from datetime values.
 3. Breaking all the date time values in `test` and `train` data.
 
 Not taking year and seconds because of having the same value all along
@@ -68,9 +60,12 @@ Not taking year and seconds because of having the same value all along
 1. DecisionTreeRegressor
 2. RandomForestRegressor
 
+For 2 different models, one for DepartureDelay and other for ArrivalDelay
+In totality 4, 2 for DepatureDelay(DD), and 2 for ArrivalDelay(AD)
 
 ## 6.1 Feature Importance
 
+For example this what I received on
 ```
 Feature Importance:
 
